@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Breathing App </title>
+</head>
+
+<style>
+	body {
+		background-color: rgb(122, 255, 233);
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+	}
+
+	.background-circle {
+		background-color: rgb(23, 154, 194);
+		height: 390px;
+		width: 390px;
+		position: absolute;
+		z-index: -2;
+		border-radius: 50%;
+	}
+
+	.circle {
+		background-color: rgba(3, 247, 247, 0.667);
+		height: 365px;
+		width: 365px;
+		position: absolute;
+		z-index: -1;
+		border-radius: 50%;
+	}
+
+	button {
+		font-size: 25px;
+		width: 200px;
+		height: 35px;
+		background-color: aqua;
+	}
+
+	#results {
+		font-size: 30px;
+	}
+</style>
+
+<body>
+
+	<h1 style="font-size: 38px;"> Breath and Relax </h1>
+
+	<div class='container'>
+
+		<div class="circle"></div>
+
+		<div class="background-circle"></div>
+
+		<div id="results"></div>
+
+	</div>
+
+
+	<script>
+
+		let resultDiv = document.querySelector('#results')
+
+		let totalTime = 12000            // 12 seconds
+		let breathTime = totalTime / 4   //  3 seconds
+		let holdTime = totalTime / 2     //  6 seconds
+
+		breathApp()
+
+		function breathApp() {
+			resultDiv.innerHTML = 'Breathe In'
+
+			function breath() {
+				for (let i = 0; i <= 6; i++) {
+					setTimeout((`holdTimer(${6 - i})`), i * 1000)
+				}
+				function hold() {
+					resultDiv.innerHTML = 'Breathe Out'
+				}
+				setTimeout(hold, holdTime)
+			}
+			setTimeout(breath, breathTime)
+		}
+		setInterval(breathApp, totalTime)
+
+		function holdTimer(seconds) {
+			resultDiv.innerHTML = 'Hold ' + String(seconds)
+		}
+
+	</script>
+
+</body>
+
+</html>
